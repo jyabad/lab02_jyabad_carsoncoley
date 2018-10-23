@@ -16,9 +16,39 @@ void runTests(void);
 
 string starZ(int width)
 {
-  string result="";
-  result = "stub"; // TODO: remove this line, replace with correct code
-  return result;
+	string result="";
+	if (width < 3)
+	{
+		return result;
+	}
+	for (int i =0; i <width; i++)
+	{
+		result += "*";
+	}
+	result += "\n";
+	int ref = width-2;
+	int ref2 = 1;
+	while (ref >0)
+	{
+		for (int j =0; j < ref; j++)
+		{
+			result += " ";
+		}
+		result += "*";
+		for (int k =0; k < ref2; k++)
+		{
+			result += " ";
+		}
+		result += "\n";
+		ref--;
+		ref2++;
+	}
+	for (int b =0; b < width;b++)
+	{
+		result += "*";
+	}
+	result += "\n";
+	return result;
 }
 
 // Test-Driven Development; check expected results against actual
@@ -66,15 +96,23 @@ int main(int argc, char *argv[])
 
   // TODO: Add check for parameter
   // and code to print usage message
-
+	if (argc!=2)
+	{
+		cerr << "Usage: " << argv[0] << " width" << endl;
+		exit(1);
+	}
+	int width = stoi(argv[1]);
   // TODO: Add code to get width from cmd line arg
   // code that checks if it is -1; if so, call runTests()
   // then exit.
-
-  runTests();
+	if (width==-1)
+	{
+		runTests();
+		exit(0);
+	}
 
   // TODO: Add code that calls the starZ function and prints
   // the result on cout (without an extra newline)
-
-  return 0;
+	cout << starZ(width);
+	return 0;
 }
