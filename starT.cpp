@@ -14,26 +14,29 @@ void runTests(void);
 
 string starT(int width, int height)
 {
-	string result="";
-	int numSpaces = (width -1)/2;
-	while (width > 0)
+	string result = "";
+	if ((width < 3) || (height < 2) || (width%2==0))
+	{
+		return result;
+	}
+	for (int i = 0; i < width; i++)
 	{
 		result += "*";
-		width--;
 	}
 	result += "\n";
-	while (height > 0)
+	int spaces = width/2;
+	for (int a = 1; a < height; a++)
 	{
-		while (numSpaces > 0)
+		for (int j = 0; j < spaces; j++)
 		{
 			result += " ";
-			numSpaces--;
-			if (numSpaces == 0)
-			{
-				result += "*";
-			}
 		}
-		height--;
+		result += "*";
+		for (int k = 0; k < spaces; k++)
+		{
+			result += " ";
+		}
+		result += "\n";
 	}
 	return result;
 }
@@ -109,7 +112,8 @@ int main(int argc, char *argv[])
 	}
 
   // TODO: Add code that calls the starT function and prints
-  // the result on cout (without an extra newline)
+  // the result on cou
+t (without an extra newline)
 	cout << starT(width, height);
 	return 0;
 }
